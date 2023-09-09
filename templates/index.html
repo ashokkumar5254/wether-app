@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    {% include 'cdnlines.html' %}
+  </head>
+  <style media="screen">
+    h3{
+      margin-top:50px;
+    }
+    .card{
+      margin-top:100px;
+    }
+  </style>
+  <body>
+    <center>
+      <div class="bg-primary text-dark">
+    <h3>Whether Reporter</h3>
+  </div>
+    </center>
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-4 col-md-4">
+          <div class="card">
+            <center>
+              <div class="bg-dark">
+                  <img width="150" height="150" src="{% static 'images/whether.jpg' %}" >
+              </div>
+            </center>
+            <div class="text-center mt-3">
+              <form class="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="city" value=""placeholder="Enter location">
+                <button type="submit">serach</button>
+
+              </form>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% if data %}
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-4 col-md-4">
+          <div class="card bg-success">
+            <strong>country_code:{{data.country_code}}</strong>
+              <strong>coordinates:{{data.coordinate}}</strong>
+              <strong>tempareture:{{data.temp}}</strong>
+              <strong>pressure:{{data.pressure}}</strong>
+              <strong>Humidity:{{data.humidity}}</strong>
+              <strong>Forecast:{{data.main}}</strong>
+              <strong>description:{{data.description}}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  </body>
+</html>
